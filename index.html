@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LEGENDARIES 메일 서명 생성기</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script type="text/javascript">
+        function printCi()  {
+            if (document.querySelector('#blackCi').checked) {
+                document.getElementById("ciResult").src = "ldrs_signature_logo_black.png"
+            } else if (document.querySelector('#redCi').checked) {
+                document.getElementById("ciResult").src = "https://legendaries.team/ldrs_signature_logo.png"
+            }
+        }
+        function printName()  {
+            const name = document.getElementById('name').value;
+            document.getElementById("nameResult").innerText = name;
+        }
+        function printEnName()  {
+            const name = document.getElementById('enName').value;
+            document.getElementById("enNameResult").innerText = name;
+        }
+        function printTeam()  {
+            const name = document.getElementById('team').value;
+            document.getElementById("teamResult").innerText = name;
+        }
+        function printPosition()  {
+            const name = document.getElementById('position').value;
+            document.getElementById("positionResult").innerText = name;
+        }
+        function printEmail()  {
+            const name = document.getElementById('emailId').value;
+            document.getElementById("emailResult").innerText = name + "@legendaries.team";
+            document.getElementById("emailResult").href = "mailto:" + name + "@legendaries.team";
+        }
+        function printMobileNum()  {
+            const name1 = document.getElementById('mobileNum1').value;
+            let cutName1 = name1.substr(1);
+            const name2 = document.getElementById('mobileNum2').value;
+            const name3 = document.getElementById('mobileNum3').value;
+            document.getElementById("mobileNumResult").innerText = cutName1 + "-" + name2 + "-" + name3;
+        }
+        function copyToClip(str) {
+            function listener(e) {
+                e.clipboardData.setData("text/html", str);
+                e.clipboardData.setData("text/plain", str);
+                e.preventDefault();
+            }
+        document.addEventListener("copy", listener);
+        document.execCommand("copy");
+        document.removeEventListener("copy", listener);
+        };
+    </script>
+
+    <div class="container">
+        <main>
+            <div class="py-4 text-center">
+                <h3 class="display-3"><strong>LEGENDARIES 메일 서명 생성기</strong></h3>
+                <p class="madeby">made by <a class="madeby" href="mailto:jeff.jin@legendaries.team">jeff.jin</a></p>
+            </div>
+
+            <p class="text-center">▼ 메일 서명 미리보기 ▼</p>
+            <div class="preview-container mb-5 row justify-content-md-center">
+                <div id="mailSignature" class="my-4">
+                    <table style="border-collapse:collapse; width:100%; margin:0px; padding:0px">
+                        <tbody>
+                            <tr style="margin:0px; padding:0px">
+                                <td align="left" style="padding:0px 0px 0px 13px; line-height:1.2; vertical-align:top; border-left:4px solid rgb(239,239,239); display:block; width:100%">
+                                    <table cellspacing="0" cellpadding="0" style="border-collapse:collapse; width:100%; vertical-align:top; margin:0px; padding:0px">
+                                        <tbody>
+                                            <tr>
+                                                <td style="padding:5px 0px 0px; line-height:1.0; display:block; width:100%">
+                                                    <font face="arial, helvetica, sans-serif" style="font-size:12pt">
+                                                        <font style="color: rgb(0,0,0); font-weight: bold;">
+                                                            <span id="enNameResult">James</span> <span id="nameResult">홍길동</span>
+                                                        </font>
+                                                    </font>
+                                                </td>
+                                                <td style="padding:5px 0px 12px 0px; line-height:1.0; display:block; width:100%">
+                                                    <font face="arial, helvetica, sans-serif" style="font-size:9pt">
+                                                        <font style="color:rgb(73,78,84)">
+                                                            <span id="teamResult">플랫폼제작 클러스터</span> | </span><span id="positionResult">플랫폼기획</span>
+                                                        </font>
+                                                    </font>
+                                                </td>
+                                                <td style="padding:0px 0px 0px 0px; display:block; width:100%">
+                                                    <p style="line-height:1.6; font-family:arial, helvetica, sans-serif; font-size:8pt; color:rgb(136, 145, 156)">
+                                                        <a id="emailResult" href="mailto:james.hong@legendaries.team" target="_blank">james.hong@legendaries.team</a>
+                                                        <br>Mobile : (+82) 
+                                                        <span id="mobileNumResult">10-1234-5678</span>
+                                                        <br>Office : (+82) 70-8680-0022, Fax : (+82) 2-6953-1104
+                                                        <br>서울특별시 강남구 테헤란로 218, 13층 (역삼동, 에이피타워), 우편번호 06221
+                                                    </p>
+                                                </td>
+                                                <td style="padding:12px 0px 0px 0px; display:block;width:100%">
+                                                    <a href="https://legendaries.team" target="_blank" title="Go to LEGENDARIES Website" >
+                                                        <img id="ciResult" src="https://www.legendaries.team/ldrs_signature_logo.png" alt="legendaries ci" width="200px" >
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="form-container row justify-content-md-center">
+                <form class="needs-validation" novalidate>
+                    
+                    <div class="mb-4">
+                        <label for="englishName" class="form-label">영어 이름<span class="text-red">*</span></label>
+                        <input type="text" class="form-control" id="enName" onkeyup="printEnName()" placeholder="James" required>
+                        <div class="invalid-feedback">
+                            영어 이름을 입력해주세요.
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="koreanName" class="form-label">한글 이름<span class="text-red">*</span></label>
+                        <input type="text" class="form-control" id="name"  onkeyup="printName()" placeholder="홍길동" value="" required>
+                        <div class="invalid-feedback">
+                            한글 이름을 입력해주세요.
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="teamName" class="form-label">소속 클러스터명</label>
+                        <input id="team" type="text" class="form-control" id="team" onkeyup="printTeam()" placeholder="플랫폼제작 클러스터">
+                    </div>
+                    <div class="mb-4">
+                        <label for="positionName" class="form-label">역할 (직책, 직군)<span class="text-red">*</span></label>
+                        <input type="text" class="form-control" id="position" onkeyup="printPosition()" placeholder="플랫폼기획" required>
+                        <div class="invalid-feedback">
+                            역할을 입력해주세요. (직책 또는 직군도 가능)
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="companyEmail" class="form-label">회사 이메일<span class="text-red">*</span></label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" id="emailId" onkeyup="printEmail()" placeholder="james.hong" aria-label="email-id" aria-describedby="basic-addon2" required>
+                            <span class="input-group-text" id="basic-addon2">@legendaries.team</span>
+                            <div class="invalid-feedback">
+                                회사 이메일 아이디를 입력해주세요.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="englishName" class="form-label">전화번호<span class="text-red">*</span></label>
+                        <div class="row gx-1">
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="mobileNum1" onkeyup="printMobileNum()" value="010" maxlength="3" placeholder="010" required>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="mobileNum2" onkeyup="printMobileNum()" maxlength="4" placeholder="1234" required>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" class="form-control" id="mobileNum3" onkeyup="printMobileNum()" maxlength="4" placeholder="5678" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row gx-1 mb-4">
+                        <label for="logoColor" class="form-label">회사 로고 타입</label>
+                        <div class="col-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="redCi" onclick="printCi()" checked>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    빨간색 CI
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="blackCi" onclick="printCi()" disabled>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    검정색 CI
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary btn-lg my-3">서명 복사하기</button>
+                    </div>
+                </form>
+            </div>
+            <div class="mb-4">
+                <p class="text-center"><a class="link-text" href="https://support.google.com/mail/answer/8395?hl=ko&co=GENIE.Platform%3DDesktop&oco=1" target="_blank">서명 설정하기 (PC로만 가능)</a></p>
+            </div>
+        </main>
+    </div>
+    <script src="js/form-validation.js"></script>
+  </body>
+</html>
