@@ -52,6 +52,7 @@
                 e.clipboardData.setData("text/plain", str);
                 e.preventDefault();
             }
+            
         document.addEventListener("copy", listener);
         document.execCommand("copy");
         document.removeEventListener("copy", listener);
@@ -78,20 +79,20 @@
                                                 <td style="padding:5px 0px 0px; line-height:1.0; display:block; width:100%">
                                                     <font face="arial, helvetica, sans-serif" style="font-size:12pt">
                                                         <font style="color: rgb(0,0,0); font-weight: bold;">
-                                                            <span id="enNameResult">James</span> <span id="nameResult">홍길동</span>
+                                                            <span id="enNameResult">Name</span> <span id="nameResult">이름</span>
                                                         </font>
                                                     </font>
                                                 </td>
                                                 <td style="padding:5px 0px 12px 0px; line-height:1.0; display:block; width:100%">
                                                     <font face="arial, helvetica, sans-serif" style="font-size:9pt">
                                                         <font style="color:rgb(73,78,84)">
-                                                            <span id="teamResult">플랫폼제작 클러스터</span> | </span><span id="positionResult">플랫폼기획</span>
+                                                            <span id="teamResult">팀명</span> <span id="divider" style="display: none;">|</span>  </span><span id="positionResult" style="display: none;"></span>
                                                         </font>
                                                     </font>
                                                 </td>
                                                 <td style="padding:0px 0px 0px 0px; display:block; width:100%">
                                                     <p style="line-height:1.6; font-family:arial, helvetica, sans-serif; font-size:8pt; color:rgb(136, 145, 156)">
-                                                        <a id="emailResult" href="mailto:james.hong@legendaries.team" target="_blank">james.hong@legendaries.team</a>
+                                                        <a id="emailResult" href="mailto:email.id@legendaries.team" target="_blank">email.id@legendaries.team</a>
                                                         <br>Mobile : (+82) 
                                                         <span id="mobileNumResult">10-1234-5678</span>
                                                         <br>Office : (+82) 70-8680-0022, Fax : (+82) 70-8220-0258
@@ -123,29 +124,53 @@
                     
                     <div class="mb-4">
                         <label for="englishName" class="form-label">영어 이름<span class="text-red">*</span></label>
-                        <input type="text" class="form-control" id="enName" onkeyup="printEnName()" placeholder="James" required>
+                        <input type="text" class="form-control" id="enName" onkeyup="printEnName()" placeholder="ex) James" required>
                         <div class="invalid-feedback">
                             영어 이름을 입력해주세요.
                         </div>
                     </div>
                     <div class="mb-4">
                         <label for="koreanName" class="form-label">한글 이름<span class="text-red">*</span></label>
-                        <input type="text" class="form-control" id="name"  onkeyup="printName()" placeholder="홍길동" value="" required>
+                        <input type="text" class="form-control" id="name"  onkeyup="printName()" placeholder="ex) 홍길동" value="" required>
                         <div class="invalid-feedback">
                             한글 이름을 입력해주세요.
                         </div>
                     </div>
                     <div class="mb-4">
-                        <label for="teamName" class="form-label">소속 클러스터명</label>
-                        <input id="team" type="text" class="form-control" id="team" onkeyup="printTeam()" placeholder="플랫폼제작 클러스터">
+                        <label for="teamName" class="form-label">소속 팀명</label>
+                        <input id="team" type="text" class="form-control" id="team" onkeyup="printTeam()" placeholder="ex) 플랫폼기획팀">
                     </div>
                     <div class="mb-4">
-                        <label for="positionName" class="form-label">역할 (직책, 직군)<span class="text-red">*</span></label>
-                        <input type="text" class="form-control" id="position" onkeyup="printPosition()" placeholder="플랫폼기획" required>
+                        <label for="positionName" class="form-label">역할 (직책, 직군)</label>
+                        <input type="text" class="form-control" id="position" onkeyup="printPosition()" placeholder="ex) 리드, CEO" disabled>
                         <div class="invalid-feedback">
                             역할을 입력해주세요. (직책 또는 직군도 가능)
                         </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="position-input-checkbox" value="option1">
+                            <label class="form-check-label" for="position-input-checkbox">역할을 입력하려면 먼저 체크해주세요.</label>
+                        </div>
                     </div>
+                    <script>
+                        const checkbox = document.getElementById('position-input-checkbox');
+                        const input = document.getElementById('position');
+                        const divider = document.getElementById('divider');
+                        const positonResult = document.getElementById('positionResult')
+                        checkbox.addEventListener('change', function() {
+                            if (checkbox.checked) {
+                                input.removeAttribute('disabled');
+                                input.setAttribute('required', '');
+                                divider.style.display = 'inline-block';
+                                positionResult.style.display = 'inline-block';
+                            } else {
+                                input.removeAttribute('required');
+                                input.setAttribute('disabled', '');
+                                input.value = '';
+                                divider.style.display = 'none';
+                                positionResult.style.display = 'none';
+                            }
+                        });
+                    </script>
                     <div class="mb-4">
                         <label for="companyEmail" class="form-label">회사 이메일<span class="text-red">*</span></label>
                         <div class="input-group mb-3">

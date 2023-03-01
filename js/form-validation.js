@@ -11,9 +11,17 @@
       } else {
         copyToClip(document.getElementById('mailSignature').innerHTML)
         alert('메일 서명이 클립보드에 복사되었습니다. 메일 서명란에 붙여넣기하세요.')
+        event.preventDefault();
       }
 
       form.classList.add('was-validated')
     }, false)
+    
+    const radioButtons = form.querySelectorAll('input[type="radio"]')
+    radioButtons.forEach(radio => {
+      radio.addEventListener('click', () => {
+        radio.removeAttribute('name')
+      })
+    })  
   })
 })()
