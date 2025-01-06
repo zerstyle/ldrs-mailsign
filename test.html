@@ -40,7 +40,7 @@
             color: #555;
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeInOut 3s ease-in-out infinite;
+            animation: fadeInOut 1.5s ease-in-out infinite;
         }
 
         @keyframes fadeInOut {
@@ -61,12 +61,38 @@
                 transform: translateY(-20px);
             }
         }
+
+        .gold-screen {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #fffbe6;
+        }
+
+        .gold-screen h1 {
+            font-size: 60px;
+            color: #ffcc00;
+            margin: 0;
+        }
+
+        .gold-screen p {
+            font-size: 18px;
+            color: #555;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
-    <h1>Username 님의 MONEY DOGS 활동 정보를 분석하고 있습니다.</h1>
-    <div class="spinner"></div>
+    <h1 id="header">Username 님의 MONEY DOGS 활동 정보를 분석하고 있습니다.</h1>
+    <div class="spinner" id="spinner"></div>
     <div class="dynamic-text" id="dynamicText"></div>
+
+    <div class="gold-screen" id="goldScreen">
+        <h1>GOLD</h1>
+        <p>Username 님의 MONEY DOGS 사용자 티어는 GOLD 입니다.</p>
+    </div>
 
     <script>
         const texts = [
@@ -83,14 +109,29 @@
 
         let index = 0;
         const dynamicTextElement = document.getElementById("dynamicText");
+        const headerElement = document.getElementById("header");
+        const spinnerElement = document.getElementById("spinner");
+        const goldScreenElement = document.getElementById("goldScreen");
 
         function updateText() {
-            dynamicTextElement.textContent = texts[index];
-            index = (index + 1) % texts.length;
+            if (index < texts.length) {
+                dynamicTextElement.textContent = texts[index];
+                index++;
+            } else {
+                // 모든 텍스트가 출력되면 화면 전환
+                clearInterval(textInterval);
+                showGoldScreen();
+            }
         }
 
-        // 텍스트 변경 주기
-        setInterval(updateText, 3000); // 3초마다 텍스트 변경
+        function showGoldScreen() {
+            headerElement.style.display = "none";
+            spinnerElement.style.display = "none";
+            dynamicTextElement.style.display = "none";
+            goldScreenElement.style.display = "flex";
+        }
+
+        const textInterval = setInterval(updateText, 1500); // 텍스트 변경 주기를 1.5초로 설정
         updateText(); // 초기 텍스트 설정
     </script>
 </body>
