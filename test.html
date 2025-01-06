@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MONEY DOGS 활동 정보 분석</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1 {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .spinner {
+            margin: 50px auto;
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(0, 0, 0, 0.1);
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .dynamic-text {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInOut 3s ease-in-out infinite;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            20% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            80% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Username 님의 MONEY DOGS 활동 정보를 분석하고 있습니다.</h1>
+    <div class="spinner"></div>
+    <div class="dynamic-text" id="dynamicText"></div>
+
+    <script>
+        const texts = [
+            "MONEY DOGS 가입 번호",
+            "MONEY DOGS 접속 횟수",
+            "TON Wallet 연결 여부",
+            "Task 참여 횟수",
+            "친구 초대 횟수",
+            "Super Pass Holder 여부",
+            "TON Transaction 횟수",
+            "MDOGS 구매 횟수",
+            "Launchpool 기여도"
+        ];
+
+        let index = 0;
+        const dynamicTextElement = document.getElementById("dynamicText");
+
+        function updateText() {
+            dynamicTextElement.textContent = texts[index];
+            index = (index + 1) % texts.length;
+        }
+
+        // 텍스트 변경 주기
+        setInterval(updateText, 3000); // 3초마다 텍스트 변경
+        updateText(); // 초기 텍스트 설정
+    </script>
+</body>
+</html>
